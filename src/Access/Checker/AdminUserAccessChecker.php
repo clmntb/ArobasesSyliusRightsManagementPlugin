@@ -20,8 +20,12 @@ class AdminUserAccessChecker
         $this->arrayListAllRoutes = $this->router->getRouteCollection()->all();
     }
 
-    public function isUserGranted(UserInterface $adminUser, string $routeName): bool
+    public function isUserGranted(UserInterface $adminUser, ?string $routeName): bool
     {
+	if (null === $routeName) {
+            return false;
+	}
+
         $authorizedRoutes = [];
         if (null === $adminUser->getRole()) {
             return false;

@@ -62,7 +62,7 @@ class AccessCheckListener
 
         $adminUser = $this->currentAdminUserProvider->getCurrentAdminUser();
 
-        if ($adminUser->getRole() === null) {
+        if ($adminUser !== null && $adminUser->getRole() === null) {
             $event->setResponse($this->redirectUser($this->getRedirectRoute(), $this->getRedirectMessage()));
         }
 
